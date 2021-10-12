@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>목소리를 드릴게요</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
+	<style type="text/css">
+		body{
+			background-image: url(main.png);
+			background-repeat: no-repeat;
+			background-size: cover;
+			font-family: 'Song Myung', serif;
+			color: black;
+			align-content: center;
+			justify-content: center;
+			}
+		.title{width: 500px;}
+		#title{z-index: 9;position: absolute;left: 100px; top: 250px; animation: bubble 1.5s ease-in-out infinite alternate;}
+		@keyframes bubble{from{top: 370px;} to{top: 320px;}}
+
+		#sentText{z-index: 9;position: absolute;right: 200px; top: 250px; font-size: 1.7em; line-height: 1.5;}
+		.word{opacity: 0;animation: fadein 2s forwards;}
+		@keyframes fadein{
+			to{opacity: 1;}
+		}
+		.icon{position: absolute;left: 0; top: 0;}
+	</style>
+</head>
+<body>
+<div id="sentText"></div>
+<div id="title">
+	<img src="title.png" class="title">
+</div>
+<script type="text/javascript">
+
+	var sent = "대개 사랑이 바래는 것은<br>\r\n 소중한 순간들을 잊고<br>\r\n서로를 함부로 대하기 시작하기<br>\r\n때문이므로, 이제 잊히지 않는<br>\r\n기억들로 사랑은 유지되었다.<br>\r\n<br>\r\n— 정세랑, 리틀 베이비블루 필";
+	var sentArr = sent.split("\r\n");
+
+	var myTimer = setInterval(print,500);
+	var s=0;
+	function print(){
+		var t= document.createElement("span");
+		t.innerHTML = sentArr[s] + " ";
+		t.className = "word";
+		s++;
+		sentText.appendChild(t);
+		
+		if(s == sentArr.length){
+			clearInterval(myTimer);
+		}
+	}
+
+
+	var a = ["01","02","03"];
+
+	a[0] 
+		
+	for(var i=0;i<10;i++){
+		var t = document.createElement("img");
+		t.src = a[randomBH(0,2)] + ".png";
+		t.className = "icon";
+		t.style.width = randomBH(100,200) + "px";
+		t.style. height = "auto";
+		t.style.left = Math.random()*screen.availWidth-200 + "px";
+		t.style.top = Math.random()*screen.availHeight-260 + "px";
+		document.body.appendChild(t);
+	}	
+
+		function randomBH(min, max) {
+		  min = Math.ceil(min);
+		  max = Math.floor(max);
+		  return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+</script>
+</body>
+</html>
